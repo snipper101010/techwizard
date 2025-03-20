@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Reserve at Ochoco</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        .hero-section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background-image: url('back3.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            width: 100%;
+        }
+        
+        .left-nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .left-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .left-nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .logo {
+            margin-left: 0px;
+        }
+        
+        .logo img {
+            height: 130px;
+        }
+        
+        .right-nav {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .location-icon {
+            margin-right: 5px;
+        }
+        
+        .location-text {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        /* Hero Content Styles */
+        .hero-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px 40px 80px;
+            width: 100%;
+        }
+        
+        .hero-text {
+            max-width: 50%;
+            margin-top: 60px;
+        }
+        
+        .hero-title {
+            font-size: 64px;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 80%;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Form Styles */
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            width: 400px;
+            color: #333;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .form-title span {
+            color: #B69B7A;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 8px 0;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .form-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #B69B7A;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .form-button:hover {
+            background-color: #B69B7A;
+        }
+        /* Floor Plans Section Styles */
+.floor-plans-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.container {
+    max-width: 100;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.floor-plans-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.floor-plans-title h2 {
+    font-size: 64px;
+    line-height: 1;
+    color: #B69B7A;
+    margin: 0;
+}
+
+.floor-plans-title h2:last-child {
+    color: #1A1E26;
+}
+
+.floor-plans-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tab-button {
+    padding: 15px 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active {
+    background-color: #B69B7A;
+    color: white;
+}
+
+.floor-plans-content {
+    display: flex;
+    position: relative;
+}
+
+.floor-plan {
+    display: none;
+    width: 100%;
+}
+
+.floor-plan.active {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.floor-plan-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.floor-plan-image img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.floor-plan-description {
+    flex: 1;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.floor-plan-description p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.schedule-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #B69B7A;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    align-self: flex-start;
+    max-width: 200px;
+}
+
+.schedule-button:hover {
+    background-color: #a38a69;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .floor-plans-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .floor-plans-title {
+        margin-bottom: 30px;
+    }
+    
+    .floor-plans-tabs {
+        justify-content: center;
+    }
+    
+    .floor-plan.active {
+        flex-direction: column;
+    }
+    
+    .floor-plan-image {
+        margin-bottom: 30px;
+    }
+    
+    .floor-plan-description {
+        padding: 0 20px;
+    }
+    
+    .schedule-button {
+        align-self: center;
+    }
+}
+.building-features-section {
+    padding: 0;
+    background-color: transparent;
+}
+
+.features-content {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.features-image {
+    flex: 1;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.features-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.features-text {
+    flex: 1;
+    background-color:#B69B7A;
+    padding: 60px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.features-text h2 {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 40px;
+}
+
+.features-text h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.features-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.features-navigation {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-button {
+    width: 60px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .features-content {
+        flex-direction: column;
+    }
+    
+    .features-image {
+        min-height: 300px;
+    }
+    
+    .features-text {
+        padding: 40px 20px;
+    }
+    
+    .features-text h2 {
+        font-size: 48px;
+    }
+}
+        
+.footer {
+    background-color: #1a1c23;
+    color: white;
+    width: 100%;
+    padding: 30px ;
+    margin-top: 30px;
+    height: 200px;
+    
+    
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .copyright {
+    font-size: 14px;
+    color: #a0a0a0;
+  }
+  
+  .logo img {
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .navigation {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-item {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+  }
+  
+  .accessibility-icons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .accessibility-icon, .equal-housing-icon {
+    height: 30px;
+    width: 30px;
+  }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .left-nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .right-nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 20px 40px;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                text-align: center;
+                margin-bottom: 70px;
+                margin-top: 40px;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+                margin-top:550px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+                max-width: 100%;
+            }
+            
+            .form-container {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 20px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .footer-accessibility {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="left-nav">
+                <a href="#">HOME</a>
+                <a href="#">FLOOR PLANS</a>
+                <a href="#">FEATURES</a>
+            </div>
+            
+            <div class="logo">
+                <img src="logo9.png" alt="The Reserve Logo">
+            </div>
+            
+            <div class="right-nav">
+                <span class="location-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                    </svg>
+                </span>
+                <span class="location-text">PRINEVILLE, OREGON</span>
+            </div>
+        </nav>
+        
+        <!-- Hero Content with Form -->
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">THE RESERVE<br>AT OCHOCO</h1>
+                <p class="hero-subtitle">The Reserve At Ochoco Is A Stunning Living Community In Prineville Oregon. Discover the simplicity of modern living.</p>
+            </div>
+            
+            <div class="form-container">
+                <h2 class="form-title"><span>JOIN</span> OUR WAITING LIST</h2>
+                
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">YOUR NAME</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">PHONE</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">YOUR EMAIL</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">WHAT ARE YOU INTERESTED IN?</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    
+                    <button type="submit" class="form-button">SEND REQUEST</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Floor Plans Section -->
+<section class="floor-plans-section">
+    <div class="container">
+        <div class="floor-plans-header">
+            <div class="floor-plans-title">
+                <h2>FLOOR</h2>
+                <h2>PLANS</h2>
+            </div>
+            <div class="floor-plans-tabs">
+                <button class="tab-button active" data-plan="studio">STUDIO</button>
+                <button class="tab-button" data-plan="one-bedroom">1 BEDROOM</button>
+                <button class="tab-button" data-plan="two-bedroom">2 BEDROOM</button>
+                <button class="tab-button" data-plan="two-bedroom-deluxe">2 BEDROOM DELUXE</button>
+                <button class="tab-button" data-plan="three-bedroom">3 BEDROOM</button>
+            </div>
+        </div>
+        
+        <div class="floor-plans-content">
+            <div class="floor-plan active" id="studio">
+                <div class="floor-plan-image">
+                    <img src="image1-1.png" alt="Studio Floor Plan">
+                </div>
+                <div class="floor-plan-description">
+                    <p>Embrace modern living with convenient amenities and a welcoming community atmosphere. Perfectly designed for comfort and style, these studio homes offer an ideal retreat after a long day. Explore all that Prineville has to offer while enjoying the serenity of your own space. Your new home awaits!</p>
+                    <a href="#" class="schedule-button">SCHEDULE</a>
+                </div>
+            </div>
+            
+            <div class="floor-plan" id="one-bedroom">
+                <div class="floor-plan-image">
+                    <img src="https://thereserveatochoco.com/wp-content/uploads/2023/03/1-bedroom.png" alt="1 Bedroom Floor Plan">
+                </div>
+                <div class="floor-plan-description">
+                    <p>Our one-bedroom apartments provide the perfect balance of space and comfort. With a separate bedroom and living area, you'll have the privacy you need and the flexibility you want. Modern finishes and thoughtful design make this floor plan a popular choice for individuals or couples seeking a place to call home.</p>
+                    <a href="#" class="schedule-button">SCHEDULE</a>
+                </div>
+            </div>
+            
+            <div class="floor-plan" id="two-bedroom">
+                <div class="floor-plan-image">
+                    <img src="https://thereserveatochoco.com/wp-content/uploads/2023/03/2-bedroom-dulex.png" alt="2 Bedroom Floor Plan">
+                </div>
+                <div class="floor-plan-description">
+                    <p>Our two-bedroom apartments give you the space you need for comfortable living. With two private bedrooms and a spacious living area, these homes are perfect for roommates, small families, or those who want a dedicated home office. Enjoy the convenience of an open-concept kitchen and dining area for easy entertaining.</p>
+                    <a href="#" class="schedule-button">SCHEDULE</a>
+                </div>
+            </div>
+            
+            <div class="floor-plan" id="two-bedroom-deluxe">
+                <div class="floor-plan-image">
+                    <img src="https://thereserveatochoco.com/wp-content/uploads/2023/03/2-bedroom.png" alt="2 Bedroom Deluxe Floor Plan">
+                </div>
+                <div class="floor-plan-description">
+                    <p>Experience luxury living in our two-bedroom deluxe apartments. Featuring an extended living area, upgraded finishes, and additional storage space, these premium homes offer an elevated lifestyle. The master bedroom includes an en-suite bathroom, while the second bedroom provides comfortable accommodations for family or guests.</p>
+                    <a href="#" class="schedule-button">SCHEDULE</a>
+                </div>
+            </div>
+            
+            <div class="floor-plan" id="three-bedroom">
+                <div class="floor-plan-image">
+                    <img src="https://thereserveatochoco.com/wp-content/uploads/2023/03/Untitled-design.png" alt="3 Bedroom Floor Plan">
+                </div>
+                <div class="floor-plan-description">
+                    <p>Our largest floor plan offers generous space for families or those who desire extra room. With three bedrooms, two bathrooms, and an expansive living area, you'll have all the space you need. The well-designed kitchen features premium appliances and ample counter space, perfect for preparing meals for family and friends.</p>
+                    <a href="#" class="schedule-button">SCHEDULE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="building-features-section">
+    <div class="container">
+        <div class="features-content">
+            <div class="features-image">
+                <img src="https://thereserveatochoco.com/wp-content/uploads/2024/12/Untitled-design-3.jpg" alt="24 Hour Fitness Center" id="feature-image">
+            </div>
+            <div class="features-text">
+                <h2>BUILDING<br>FEATURES</h2>
+                <h3 id="feature-title">24 HOUR FITNESS</h3>
+                <p id="feature-description">Our 24-hour fitness center is right at your doorstep! Get fit, stay healthy, and enjoy the convenience of working out whenever you want. Your dream apartment community just got even better!</p>
+                <div class="features-navigation">
+                    <button class="nav-button prev-button" id="prev-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5"></path>
+                            <path d="M12 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button class="nav-button next-button" id="next-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14"></path>
+                            <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+          <div class="copyright">
+            © 2025 The Reserve At Ochoco.
+          </div>
+          <div class="logo">
+            <img src="logo9.png" alt="The Reserve At Ochoco Logo">
+          </div>
+          <div class="navigation">
+            <a href="#" class="nav-item">HOME</a>
+            <a href="#" class="nav-item">FLOOR PLANS</a>
+            <a href="#" class="nav-item">FEATURES</a>
+          </div>
+          <div class="accessibility-icons">
+            <img src="https://thereserveatochoco.com/wp-content/uploads/2024/12/Wheelchair_symbol.png" alt="Accessibility" class="accessibility-icon">
+            <img src="equal-housing-icon.png" alt="Equal Housing" class="equal-housing-icon">
+          </div>
+        </div>
+      </footer>
+    <script>
+        // Paste the JavaScript code here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-button');
+            
+            // Get all floor plan divs
+            const floorPlans = document.querySelectorAll('.floor-plan');
+            
+            // Add click event listener to each tab button
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get the floor plan ID from the data-plan attribute
+                    const planId = this.getAttribute('data-plan');
+                    
+                    // Hide all floor plans
+                    floorPlans.forEach(plan => {
+                        plan.classList.remove('active');
+                    });
+                    
+                    // Show the selected floor plan
+                    document.getElementById(planId).classList.add('active');
+                });
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define the features data
+            const features = [
+                {
+                    image: "https://thereserveatochoco.com/wp-content/uploads/2024/12/Untitled-design-4.jpg",
+                    title: "24 HOUR FITNESS",
+                    description: "Our 24-hour fitness center is right at your doorstep! Get fit, stay healthy, and enjoy the convenience of working out whenever you want. Your dream apartment community just got even better!"
+                },
+                {
+                    image: "https://thereserveatochoco.com/wp-content/uploads/2024/12/Untitled-design-3.jpg",
+                    title: "RESORT-STYLE POOL",
+                    description: "Relax and unwind at our beautiful resort-style pool. Perfect for cooling off on hot days or enjoying a peaceful afternoon in the sun. Comfortable lounge chairs and a welcoming atmosphere await you."
+                },
+                {
+                    image: "https://thereserveatochoco.com/wp-content/uploads/2024/12/Untitled-design.png",
+                    title: "COMMUNITY CLUBHOUSE",
+                    description: "Our elegant clubhouse is the perfect space for socializing, working remotely, or hosting gatherings. With comfortable seating, Wi-Fi, and stylish decor, it's an extension of your home."
+                },
+                {
+                    image: "https://thereserveatochoco.com/wp-content/uploads/2024/12/Untitled-design-1.jpg",
+                    title: "PET FRIENDLY",
+                    description: "We love your furry friends as much as you do! Our pet-friendly community welcomes your pets with open arms. Enjoy walks around our beautifully landscaped grounds and easy access to nearby parks."
+                },
+                {
+                    image: "https://thereserveatochoco.com/wp-content/uploads/2024/12/Untitled-design-2.jpg",
+                    title: "IN-UNIT LAUNDRY",
+                    description: "Enjoy the convenience of in-unit laundry facilities. No more trips to the laundromat or sharing machines with your neighbors. Your private washer and dryer make laundry day a breeze."
+                }
+            ];
+            
+            // Get the DOM elements
+            const featureImage = document.getElementById('feature-image');
+            const featureTitle = document.getElementById('feature-title');
+            const featureDescription = document.getElementById('feature-description');
+            const prevButton = document.getElementById('prev-feature');
+            const nextButton = document.getElementById('next-feature');
+            
+            // Set current feature index
+            let currentFeatureIndex = 0;
+            
+            // Function to update the feature content
+            function updateFeature() {
+                const feature = features[currentFeatureIndex];
+                
+                // Create a smooth transition effect
+                featureImage.style.opacity = '0';
+                featureTitle.style.opacity = '0';
+                featureDescription.style.opacity = '0';
+                
+                setTimeout(() => {
+                    featureImage.src = feature.image;
+                    featureTitle.textContent = feature.title;
+                    featureDescription.textContent = feature.description;
+                    
+                    featureImage.style.opacity = '1';
+                    featureTitle.style.opacity = '1';
+                    featureDescription.style.opacity = '1';
+                }, 300);
+            }
+            
+            // Add click event listeners to navigation buttons
+            prevButton.addEventListener('click', function() {
+                currentFeatureIndex = (currentFeatureIndex - 1 + features.length) % features.length;
+                updateFeature();
+            });
+            
+            nextButton.addEventListener('click', function() {
+                currentFeatureIndex = (currentFeatureIndex + 1) % features.length;
+                updateFeature();
+            });
+            
+            // Add transition style to elements
+            featureImage.style.transition = 'opacity 0.3s ease';
+            featureTitle.style.transition = 'opacity 0.3s ease';
+            featureDescription.style.transition = 'opacity 0.3s ease';
+        });
+        </script>
+       
+</body>
+</html>
